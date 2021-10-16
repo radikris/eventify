@@ -1,0 +1,206 @@
+Eventify
+
+Pagek:
+- index.html - login form
+-register.html – register form
+-forget_password.html – elfelejtett jelszó form
+-dashboard.html – eventek listázása, és kereső oldal (favorit, going gomb használható, add event)
+-event_detail.html – egy bizonyos event detail page (going gomb használható)
+-favorites.html – a kedvencek közé rakott eventek page (favorit, going gomb használható)
+-profile.html – a user saját oldala, saját eventei (favorit, going gomb használható, edit, delete)
+
+Funkciók:
+Regiszter
+Login
+Elfelejtett jelszó
+Logout
+Összes event megnézése
+Egy darab event megnézése
+Event favoritba rakása
+Event create (kép feltöltéssel)
+Event edit
+Event delete
+Event keresése
+Mai eventek listázása
+Saját eventek listázása
+Favorit eventek listázása
+Profile name edit
+
+
+
+Routing
+
+middleware/event/
+•	create_event (létrehoz egy új eventet, ha minden mező kitöltve és kép is van kiválasztva, redirectel a /events-re, ha nem akkor errort ír)
+•	delete_event (kitöröl egy eventet (eventid) és redirectel a /profilera)
+•	edit_event (szerkeszt egy eventet (eventid) és redirectel a /profilera)
+•	get_event (lekér egy adott eventid-hoz tartozó event részleteit)
+•	get_event_members (lekér egy adott eventid-hoz tartozó event résztvevőit going/skip)
+•	get_event_user_going (lekéri a user going/skip-e a paraméterben kapott eseményekre)
+•	get_event_user_favorite (lekéri a user favorite-e a paraméterben kapott eseményekre)
+•	get_events (lekéri az összes event listáját, ha van paraméterben megadott query, azzal keres az eventek közt)
+•	get_today_events (kiszűri a paraméternen kapott összes event közül a maiakat)
+
+middleware/user
+•	action_favorite_event (a user egy eventid eseményt favorite togglezik)
+•	action_going_event (a user egy eventid eseményt going/skip-re nyom)
+•	edit_user_name (username megváltoztatása, ha a régi név nem egyezik az újjal)
+•	get_user_events (lekéri a user által feltöltött eseményeket)
+•	get_user_favorites (lekéri a user által favoritolt eseményeket)
+•	get_user (lekéri a user adatait)
+
+middleware/auth/
+•	login (ellenőrzi, hogy a user által form helyes-e, ha igen redirect /events, különben error)
+•	register (ellenőrzi, hogy a user által form helyes-e, ha igen redirect /events, különben error)
+•	forget_password (ellenőrzi, hogy a user által form helyes-e, ha igen redirect /login, különben error)
+•	logout (kijelentkezteti a usert, ha be van jelentkezve, redirect /login)
+
+middleware/common/
+•	auth (ha a user nincs bejelentkeze redirect /login, különben next)
+•	reverse_auth (ha a user be van jelentkeze next, különben redirect /login)
+•	render (kirenderel egy html filet)
+
+
+GET, POST: /				index.html
+reverseAuthMW
+loginMW
+renderMW
+
+
+GET, POST: /register			register.html
+reverseAuthMW
+registerMW
+renderMW
+
+GET, POST: /forgetpw			forget_password.html
+reverseAuthMW
+forgetPasswordMW
+renderMW
+
+POST: /logout
+authMW
+logoutMW
+
+GET, POST: /events			dashboard.html
+authMW
+actionFavoriteEventMW
+actionGoingEventMW
+getEventsMW
+getEventUserFavoriteMW
+getEventUserGoingMW
+getTodayEventsMW
+renderMW
+
+GET, POST: /events/add		dashboard.html
+authMW
+actionFavoriteEventMW
+actionGoingEventMW
+getEventsMW
+getEventUserFavoriteMW
+getEventUserGoingMW
+getTodayEventsMW
+createEventMW
+renderMW
+
+GET, POST: /events/:eventid		event_detail.html
+authMW
+actionFavoriteEventMW
+actionGoingEventMW
+getEventMW
+getEventMembersMW
+getEventUserFavoriteMW
+getEventUserGoingMW
+renderMW
+
+GET, POST: /favorites			favorites.html
+authMW
+actionFavoriteEventMW
+actionGoingEventMW
+getUserFavoritesMW
+getEventUserFavoriteMW
+getEventUserGoingMW
+renderMW
+
+GET, POST: /profile			profile.html
+authMW
+editUserNameMW
+getUserMW
+actionGoingEventMW
+getUserEventsMW
+getEventUserGoingMW
+renderMW
+
+GET, POST: /profile/edit/:eventid	profile.html
+authMW
+getUserMW
+getUserEventsMW
+getEventUserGoingMW
+getEventMW
+editEventMW
+renderMW
+
+GET: /profile/del/:eventid	profile.html
+authMW
+getEventMW
+deleteEventMW
+
+
+
+
+
+
+
+GET, POST  /                        - post esetén jelszó ellenőrzés, ha ok, nagymamára redirect, vissza a főoldalra
+    getTopNagymamakMW
+    checkPassMW
+    renderMW(index.html)
+
+GET /nagymama
+    authMW
+    getNagymamakMW
+    renderMW(nagymamalista.html)
+
+GET,POST /nagymama/new
+    authMW
+    saveNagymamaMW
+    renderMW(nagymamaeditnew.html (new))
+        - ha volt valami érték beküldbe -> form elemek azzal töltődjenek fel
+        - ha nem, akkor nem
+
+GET,POST /nagymama/edit/:nagymamaid     - nagymamaeditnew.html (edit)
+    authMW
+    getNagymamaMw
+    saveNagymamaMW
+    renderMW(nagymamaeditnew.html (new))
+            - ha volt valami érték beküldbe -> form elemek azzal töltődjenek fel
+            - ha nem, akkor nem
+
+GET /nagymama/del/:nagymamaid
+    authMW
+    getNagymamaMw
+    delNagymamaMw
+
+GET /befott/:nagymamaid
+    authMW
+    getNagymamaMw
+    getBefottekMw
+    renderMW(egynagymamabefottjei.html)
+
+GET,POST /befott/:nagymamaid/new  -
+    authMW
+    getNagymamaMw
+    getBefottMw
+    saveBefottMw
+    renderMW(befotteditnew.html)
+
+GET,POST /befott/:nagymamaid/edit/:befottid  -
+    authMW
+    getNagymamaMw
+    getBefottMw
+    saveBefottMw
+    renderMW(befotteditnew.html)
+
+GET /befott/:nagymamaid/del/:befottid
+    authMW
+    getBefottMw
+    delBefottMw
