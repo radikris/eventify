@@ -26,22 +26,22 @@ module.exports = function (app) {
 
   app.use(
     "/",
-    reverseAuthMW(objRepo),
-    loginMW(objRepo),
+    reverseAuthMW(objRepo), //try to autologin
+    loginMW(objRepo), //login form check
     renderMW(objRepo, "index")
   );
 
   app.use(
     "/register",
-    reverseAuthMW(objRepo),
-    registerMW(objRepo),
+    reverseAuthMW(objRepo), //try to autologin
+    registerMW(objRepo), //register form check
     renderMW(objRepo, "register")
   );
 
   app.use(
     "/forgetpw",
-    reverseAuthMW(objRepo),
-    forgetPasswordMW(objRepo),
+    reverseAuthMW(objRepo), //try to autologin
+    forgetPasswordMW(objRepo), //forget pasword form check and "in real newpw email send"
     renderMW(objRepo, "forget_password")
   );
 
@@ -49,13 +49,13 @@ module.exports = function (app) {
 
   app.use(
     "/events",
-    authMW(objRepo),
-    actionFavoriteEventMW(objRepo),
-    actionGoingEventMW(objRepo),
-    getEventsMW(objRepo),
-    getEventUserFavoriteMW(objRepo),
-    getEventUserGoingMW(objRepo),
-    getTodayEventsMW(objRepo),
+    authMW(objRepo), //if not login, redirect to
+    actionFavoriteEventMW(objRepo), //toggle favorite eventid in db
+    actionGoingEventMW(objRepo), //going/skip eventid in db
+    getEventsMW(objRepo), //get all events from db
+    getEventUserFavoriteMW(objRepo), //check all events if user favorited them
+    getEventUserGoingMW(objRepo), //check all events if user going them
+    getTodayEventsMW(objRepo), //add events to another list which are today
     renderMW(objRepo, "dashboard")
   );
 
@@ -68,7 +68,7 @@ module.exports = function (app) {
     getEventUserFavoriteMW(objRepo),
     getEventUserGoingMW(objRepo),
     getTodayEventsMW(objRepo),
-    createEventMW(objRepo),
+    createEventMW(objRepo), //create event on modal
     renderMW(objRepo, "dashboard")
   );
 
@@ -78,7 +78,7 @@ module.exports = function (app) {
     actionFavoriteEventMW(objRepo),
     actionGoingEventMW(objRepo),
     getEventMW(objRepo),
-    getEventMembersMW(objRepo),
+    getEventMembersMW(objRepo), //get all users to eventid if going/skip
     getEventUserFavoriteMW(objRepo),
     getEventUserGoingMW(objRepo),
     renderMW(objRepo, "event_detail")
@@ -90,7 +90,7 @@ module.exports = function (app) {
     actionFavoriteEventMW(objRepo),
     actionGoingEventMW(objRepo),
     getUserFavoritesMW(objRepo),
-    getEventUserFavoriteMW(objRepo),
+    getEventUserFavoriteMW(objRepo), //get all events which are favorited by the user
     getEventUserGoingMW(objRepo),
     renderMW(objRepo, "favorites")
   );
@@ -98,10 +98,10 @@ module.exports = function (app) {
   app.use(
     "/profile",
     authMW(objRepo),
-    editUserNameMW(objRepo),
-    getUserMW(objRepo),
+    editUserNameMW(objRepo), //edit userid with new username
+    getUserMW(objRepo), //get userid all data
     actionGoingEventMW(objRepo),
-    getUserEventsMW(objRepo),
+    getUserEventsMW(objRepo), //get all events created by the user
     getEventUserGoingMW(objRepo),
     renderMW(objRepo, "profile")
   );
@@ -113,7 +113,7 @@ module.exports = function (app) {
     getUserEventsMW(objRepo),
     getEventUserGoingMW(objRepo),
     getEventMW(objRepo),
-    editEventMW(objRepo),
+    editEventMW(objRepo), //edit eventid event with new datas
     renderMW(objRepo, "profile")
   );
 
@@ -121,6 +121,6 @@ module.exports = function (app) {
     "/profile/del/:eventid",
     authMW(objRepo),
     getEvent(objRepo),
-    deleteEventMW(objRepo)
+    deleteEventMW(objRepo) //delete eventid
   );
 };
