@@ -136,68 +136,7 @@ editEventMW
 renderMW
 
 
-GET: /profile/del/:eventid	profile.html
+POST: /profile/del/:eventid	profile.html
 authMW
 getEventMW
 deleteEventMW
-
-
-
-
-
-
-
-GET, POST  /                        - post esetén jelszó ellenőrzés, ha ok, nagymamára redirect, vissza a főoldalra
-    getTopNagymamakMW
-    checkPassMW
-    renderMW(index.html)
-
-GET /nagymama
-    authMW
-    getNagymamakMW
-    renderMW(nagymamalista.html)
-
-GET,POST /nagymama/new
-    authMW
-    saveNagymamaMW
-    renderMW(nagymamaeditnew.html (new))
-        - ha volt valami érték beküldbe -> form elemek azzal töltődjenek fel
-        - ha nem, akkor nem
-
-GET,POST /nagymama/edit/:nagymamaid     - nagymamaeditnew.html (edit)
-    authMW
-    getNagymamaMw
-    saveNagymamaMW
-    renderMW(nagymamaeditnew.html (new))
-            - ha volt valami érték beküldbe -> form elemek azzal töltődjenek fel
-            - ha nem, akkor nem
-
-GET /nagymama/del/:nagymamaid
-    authMW
-    getNagymamaMw
-    delNagymamaMw
-
-GET /befott/:nagymamaid
-    authMW
-    getNagymamaMw
-    getBefottekMw
-    renderMW(egynagymamabefottjei.html)
-
-GET,POST /befott/:nagymamaid/new  -
-    authMW
-    getNagymamaMw
-    getBefottMw
-    saveBefottMw
-    renderMW(befotteditnew.html)
-
-GET,POST /befott/:nagymamaid/edit/:befottid  -
-    authMW
-    getNagymamaMw
-    getBefottMw
-    saveBefottMw
-    renderMW(befotteditnew.html)
-
-GET /befott/:nagymamaid/del/:befottid
-    authMW
-    getBefottMw
-    delBefottMw

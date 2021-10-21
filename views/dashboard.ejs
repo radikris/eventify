@@ -1,6 +1,6 @@
 <%- include('header') -%>
-  <%- include('navbar', {isAuthenticated: true}) %> 
-
+<%- include('navbar', {isAuthenticated: true}) %> 
+<%- console.log(JSON.stringify(events)) %>
   <div>
     <div class="container">
       <div class="row p-5 justify-content-center">
@@ -50,7 +50,6 @@
           </div>
         </div>
         <!-- THIS IS THE END OF ONE EVENT CARD -->
-
         <div
           class="
             col-8
@@ -75,40 +74,13 @@
           </a>
           </div>
 
-
           <div id="all_events" class="d-flex flex-wrap">
-            <div class="card border-dark mb-3 mx-3 rounded-3 just" style="max-width: 18rem">
-              <div class="bg-image">
-                <img
-                  class="card-img"
-                  src="https://www.drandyfranklynmiller.com/wp-content/uploads/2015/08/placeholder-image.png"
-                  style="max-width: 18rem bg-image"
-                  alt="Card image"
-                />
-              </div>
-              
-              <div class="card-img-overlay text-dark">
-              <div class="d-flex justify-content-between">
-              <h5 class=>${element.title}</h5>
-              <i class="float-end far fa-heart" id="eventFavorite" style="cursor: pointer;"></i>
-              </div>
-              <a href="/event_detail">
-              <p class="card-text text-light text-truncate">
-                  ${element.description}
-                </p>
-                </a>
-              </div>
-              <div class="card-footer bg-transparent border-dark">
-                <div class="d-flex justify-content-between">
-                  <h5 class=>${date} </h5>
-                  <div class=>
-                      <a class="btn btn-success mx-1 px-2" href="">GOING</a>
-                      <a class="btn btn-danger mx-1 px-2" href="">SKIP</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <% events[0].title %>
+              ez persze megjelenik 
           </div>
+         
+
+          
         </div>
       </div>
     </div>
