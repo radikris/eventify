@@ -1,89 +1,55 @@
-<%- include('header') -%>
-<%- include('navbar', {isAuthenticated: true}) %> 
-<%- console.log(JSON.stringify(events)) %>
-  <div>
-    <div class="container">
-      <div class="row p-5 justify-content-center">
-        <div
-          class="
-            col-4
-            border border-1 border-dark
-            justify-content-center
-            text-center
-          "
-        >
-          <h2 class="text-dark mt-1">
-            <p>TODAY’S EVENTS</p>
-          </h2>
+<%- include('header') -%> <%- include('navbar', {isAuthenticated: true}) %> <%-
+console.log(JSON.stringify(events)) %>
+<div>
+  <div class="container">
+    <div class="row p-5 justify-content-center">
+      <div
+        class="
+          col-4
+          border border-1 border-dark
+          justify-content-center
+          text-center
+        "
+      >
+        <h2 class="text-dark mt-1">
+          <p>TODAY’S EVENTS</p>
+        </h2>
 
-          <div id="todays_events">
-            <div class="card border-dark mb-3 rounded-3" style="max-width: 18rem">
-              <div class="bg-image">
-                <img
-                  class="card-img"
-                  src="https://www.drandyfranklynmiller.com/wp-content/uploads/2015/08/placeholder-image.png"
-                  style="max-width: 18rem bg-image"
-                  alt="Card image"
-                />
-              </div>
-              <div class="card-img-overlay text-dark">
-                <div class="d-flex justify-content-between">
-                  <h5 class=>${element.title}</h5>
-                    <i class="float-end far fa-heart" id="eventFavorite" style="cursor: pointer;"></i>
-                 </div>
-                 <a href="/event_detail">
-                  <p class="card-text text-light text-truncate">
-                      ${element.description}
-                    </p>
-                    </a>
-              </div>
-              <div class="card-footer bg-transparent border-dark">
-                <div class="d-flex justify-content-between">
-                  <h3 class=>hh:mm</h3>
-                  <div class=>
-                      <a class="btn btn-success mx-1 px-2" href="">GOING</a>
-                      <a class="btn btn-danger mx-1 px-2" href="">SKIP</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div id="todays_events">
+          <% todays.forEach(element => { %> <%- include('common_event_card',
+          {event: element, isToday: true}) %> <% }); %>
         </div>
-        <!-- THIS IS THE END OF ONE EVENT CARD -->
-        <div
-          class="
-            col-8
-            border border-1 border-dark
-            justify-content-center
-            text-center
-          "
-        >
-          <div class="d-flex justify-content-lg-between mb-3 mt-1">
-            <input
-              class="w-50 float-start form-control mr-sm-2 border-warning"
-              type="search"
-              placeholder="Search for events..."
-              aria-label="Search"
-            />
-            <a
-              type="button"
-              class="btn btn-warning"
-              href="/event_create"
-            >
-              + ADD EVENT
+      </div>
+      <!-- THIS IS THE END OF ONE EVENT CARD -->
+      <div
+        class="
+          col-8
+          border border-1 border-dark
+          justify-content-center
+          text-center
+        "
+      >
+        <div class="d-flex justify-content-lg-between mb-3 mt-1">
+          <input
+            class="w-50 float-start form-control mr-sm-2 border-warning"
+            type="search"
+            placeholder="Search for events..."
+            aria-label="Search"
+          />
+          <a type="button" class="btn btn-warning" href="/events/add">
+            + ADD EVENT
           </a>
-          </div>
+        </div>
 
-          <div id="all_events" class="d-flex flex-wrap">
-              <% events[0].title %>
-              ez persze megjelenik 
+        <div id="all_events" class="d-flex flex-wrap">
+          <% events.forEach(function(item){ %>
+    
+            <%- include('common_event_card', {event: item, isToday: false}) %>
+            <% }); %>
           </div>
-         
-
-          
         </div>
       </div>
     </div>
   </div>
-<%- include('footer') -%>
-
+  <%- include('footer') -%>
+</div>

@@ -7,8 +7,20 @@ kiszűri a paraméternen kapott összes event közül a maiakat
 const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
+  const isToday = (someDate) => {
+    const today = new Date();
+    return (
+      someDate.getDate() == today.getDate() &&
+      someDate.getMonth() == today.getMonth() &&
+      someDate.getFullYear() == today.getFullYear()
+    );
+  };
+
   return function (req, res, next) {
     console.log("todaymw");
+
+    res.locals.todays = res.locals.events.filter((a) => isToday(a.date));
+
     return next();
   };
 };
