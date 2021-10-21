@@ -1,26 +1,7 @@
-<html>
-  <head>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.7/dist/latest/bootstrap-autocomplete.min.js"></script>
-  </head>
-  <nav class="navbar navbar-light bg-warning">
-    <div class="container-fluid">
-      <a class="navbar-brand">EVENTIFY</a>
-      <div class="d-flex">
-        <button class="btn btn-outline-dark" type="submit">LOGIN</button>
-      </div>
-    </div>
-  </nav>
+<%- include('header') -%>
+
+<%- include('navbar', {isAuthenticated: false}) %> 
+
   <div class="container justify-content-center">
     <img
       src="./images/eventify.png"
@@ -60,16 +41,17 @@
             placeholder="Password confirm"
           />
         </div>
-        <a href="/index.html" />
+        <a href="/" />
         <small id="emailHelp" class="d-flex justify-content-center text-warning"
           >Already have an account? Sign in!
         </small>
         <a
           class="btn btn-warning d-flex justify-content-center mt-4"
-          href="/dashboard.html"
+          href="/events"
           >SIGN UP</a
         >
       </form>
     </div>
   </div>
-</html>
+  <%- include('footer') -%>
+

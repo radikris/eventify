@@ -1,0 +1,28 @@
+<% if(!isAuthenticated){ %>
+<nav class="navbar navbar-light bg-warning">
+  <div class="container-fluid">
+    <a class="navbar-brand">EVENTIFY</a>
+    <div class="d-flex">
+      <button class="btn btn-outline-dark" type="submit">LOGIN</button>
+    </div>
+  </div>
+</nav>
+<% } %> <% if(isAuthenticated){ %>
+<nav class="navbar navbar-light bg-warning">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img
+        src="./images/eventify.png"
+        class="rounded d-block h-25 w-25"
+        alt="logo"
+      />
+    </a>
+    <div class="d-flex">
+      <a class="btn btn-outline-dark px-2 mx-2" href="/events">EVENTS</a>
+      <a class="btn btn-outline-dark px-2 mx-2" href="/favorites">FAVORITES</a>
+      <a class="btn btn-outline-dark px-2 mx-2" href="/profile">PROFILE</a>
+      <a class="btn btn-outline-dark px-2 mx-2" href="/">LOGOUT</a>
+    </div>
+  </div>
+</nav>
+<% } %>

@@ -25,13 +25,6 @@ module.exports = function (app) {
   const objRepo = {};
 
   app.use(
-    "/",
-    reverseAuthMW(objRepo), //try to autologin
-    loginMW(objRepo), //login form check
-    renderMW(objRepo, "index")
-  );
-
-  app.use(
     "/register",
     reverseAuthMW(objRepo), //try to autologin
     registerMW(objRepo), //register form check
@@ -46,18 +39,6 @@ module.exports = function (app) {
   );
 
   app.post("/logout", authMW(objRepo), logoutMW(objRepo));
-
-  app.use(
-    "/events",
-    authMW(objRepo), //if not login, redirect to
-    actionFavoriteEventMW(objRepo), //toggle favorite eventid in db
-    actionGoingEventMW(objRepo), //going/skip eventid in db
-    getEventsMW(objRepo), //get all events from db
-    getEventUserFavoriteMW(objRepo), //check all events if user favorited them
-    getEventUserGoingMW(objRepo), //check all events if user going them
-    getTodayEventsMW(objRepo), //add events to another list which are today
-    renderMW(objRepo, "dashboard")
-  );
 
   app.use(
     "/events/add",
@@ -79,6 +60,18 @@ module.exports = function (app) {
   );
 
   app.use(
+    "/events",
+    authMW(objRepo), //if not login, redirect to
+    actionFavoriteEventMW(objRepo), //toggle favorite eventid in db
+    actionGoingEventMW(objRepo), //going/skip eventid in db
+    getEventsMW(objRepo), //get all events from db
+    getEventUserFavoriteMW(objRepo), //check all events if user favorited them
+    getEventUserGoingMW(objRepo), //check all events if user going them
+    getTodayEventsMW(objRepo), //add events to another list which are today
+    renderMW(objRepo, "dashboard")
+  );
+
+  app.use(
     "/favorites",
     authMW(objRepo),
     actionFavoriteEventMW(objRepo),
@@ -87,17 +80,6 @@ module.exports = function (app) {
     getEventUserFavoriteMW(objRepo), //get all events which are favorited by the user
     getEventUserGoingMW(objRepo),
     renderMW(objRepo, "favorites")
-  );
-
-  app.use(
-    "/profile",
-    authMW(objRepo),
-    editUserNameMW(objRepo), //edit userid with new username
-    getUserMW(objRepo), //get userid all data
-    actionGoingEventMW(objRepo),
-    getUserEventsMW(objRepo), //get all events created by the user
-    getEventUserGoingMW(objRepo),
-    renderMW(objRepo, "profile")
   );
 
   app.use(
@@ -113,5 +95,23 @@ module.exports = function (app) {
     authMW(objRepo),
     getEventMW(objRepo),
     deleteEventMW(objRepo) //delete eventid
+  );
+
+  app.use(
+    "/profile",
+    authMW(objRepo),
+    editUserNameMW(objRepo), //edit userid with new username
+    getUserMW(objRepo), //get userid all data
+    actionGoingEventMW(objRepo),
+    getUserEventsMW(objRepo), //get all events created by the user
+    getEventUserGoingMW(objRepo),
+    renderMW(objRepo, "profile")
+  );
+
+  app.use(
+    "/",
+    reverseAuthMW(objRepo), //try to autologin
+    loginMW(objRepo), //login form check
+    renderMW(objRepo, "index")
   );
 };
