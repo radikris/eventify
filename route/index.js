@@ -62,14 +62,8 @@ module.exports = function (app) {
   app.use(
     "/events/add",
     authMW(objRepo),
-    actionFavoriteEventMW(objRepo),
-    actionGoingEventMW(objRepo),
-    getEventsMW(objRepo),
-    getEventUserFavoriteMW(objRepo),
-    getEventUserGoingMW(objRepo),
-    getTodayEventsMW(objRepo),
-    createEventMW(objRepo), //create event on modal
-    renderMW(objRepo, "dashboard")
+    createEventMW(objRepo), //create event on different page
+    renderMW(objRepo, "event_create")
   );
 
   app.use(
@@ -109,18 +103,15 @@ module.exports = function (app) {
   app.use(
     "/profile/edit/:eventid",
     authMW(objRepo),
-    getUserMW(objRepo),
-    getUserEventsMW(objRepo),
-    getEventUserGoingMW(objRepo),
     getEventMW(objRepo),
     editEventMW(objRepo), //edit eventid event with new datas
-    renderMW(objRepo, "profile")
+    renderMW(objRepo, "event_edit")
   );
 
   app.get(
     "/profile/del/:eventid",
     authMW(objRepo),
-    getEvent(objRepo),
+    getEventMW(objRepo),
     deleteEventMW(objRepo) //delete eventid
   );
 };
