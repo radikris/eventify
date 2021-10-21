@@ -76,102 +76,6 @@
     </div>
   </nav>
 
-  <div
-    class="modal fade"
-    id="exampleModalCenter"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-center" id="exampleModalLongTitle">
-            CREATE NEW EVENT
-          </h5>
-          <button
-            type="button"
-            class="close btn-outline-warning"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="d-flex justify-content-center">
-            <img id="target" class="w-50 d-inline-flex" />
-          </div>
-          <input
-            type="file"
-            id="select_image"
-            name="image"
-            class="d-flex justify-content-center my-2 float-none"
-            onchange="putImage()"
-          />
-          <div class="container">
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="exampleFormControlInput1">Event name</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="exampleFormControlInput1"
-                    placeholder="Event name"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Description</label>
-                  <textarea
-                    class="form-control"
-                    id="exampleFormControlTextarea1"
-                    rows="3"
-                  ></textarea>
-                </div>
-              </div>
-
-              <div class="col-6">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    name="daterange"
-                    value="01/01/2021 - 12/31/2021"
-                    class="mt-4"
-                  />
-                  <script>
-                    $(function () {
-                      $('input[name="daterange"]').daterangepicker(
-                        {
-                          opens: "left",
-                        },
-                        function (start, end, label) {
-                          console.log(
-                            "A new date selection was made: " +
-                              start.format("YYYY-MM-DD") +
-                              " to " +
-                              end.format("YYYY-MM-DD")
-                          );
-                        }
-                      );
-                    });
-                  </script>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer d-flex justify-content-center">
-          <button type="button" class="btn btn-warning">DONE</button>
-          <button type="button" class="btn btn-light" data-dismiss="modal">
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div>
     <div class="container">
       <div class="row p-5 justify-content-center">
@@ -187,7 +91,38 @@
             <p>TODAY’S EVENTS</p>
           </h2>
 
-          <div id="todays_events"></div>
+          <div id="todays_events">
+            <div class="card border-dark mb-3 rounded-3" style="max-width: 18rem">
+              <div class="bg-image">
+                <img
+                  class="card-img"
+                  src="https://www.drandyfranklynmiller.com/wp-content/uploads/2015/08/placeholder-image.png"
+                  style="max-width: 18rem bg-image"
+                  alt="Card image"
+                />
+              </div>
+              <div class="card-img-overlay text-dark">
+                <div class="d-flex justify-content-between">
+                  <h5 class=>${element.title}</h5>
+                    <i class="float-end far fa-heart" id="eventFavorite" style="cursor: pointer;"></i>
+                 </div>
+                 <a href="../event_detail.html">
+                  <p class="card-text text-light text-truncate">
+                      ${element.description}
+                    </p>
+                    </a>
+              </div>
+              <div class="card-footer bg-transparent border-dark">
+                <div class="d-flex justify-content-between">
+                  <h3 class=>hh:mm</h3>
+                  <div class=>
+                      <a class="btn btn-success mx-1 px-2" href="">GOING</a>
+                      <a class="btn btn-danger mx-1 px-2" href="">SKIP</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- THIS IS THE END OF ONE EVENT CARD -->
 
@@ -206,16 +141,49 @@
               placeholder="Search for events..."
               aria-label="Search"
             />
-            <button
+            <a
               type="button"
               class="btn btn-warning"
-              data-toggle="modal"
-              data-target="#exampleModalCenter"
+              href="/event_create.html"
             >
               + ADD EVENT
-            </button>
+          </a>
           </div>
-          <div id="all_events" class="d-flex flex-wrap"></div>
+
+
+          <div id="all_events" class="d-flex flex-wrap">
+            <div class="card border-dark mb-3 mx-3 rounded-3 just" style="max-width: 18rem">
+              <div class="bg-image">
+                <img
+                  class="card-img"
+                  src="https://www.drandyfranklynmiller.com/wp-content/uploads/2015/08/placeholder-image.png"
+                  style="max-width: 18rem bg-image"
+                  alt="Card image"
+                />
+              </div>
+              
+              <div class="card-img-overlay text-dark">
+              <div class="d-flex justify-content-between">
+              <h5 class=>${element.title}</h5>
+              <i class="float-end far fa-heart" id="eventFavorite" style="cursor: pointer;"></i>
+              </div>
+              <a href="../event_detail.html">
+              <p class="card-text text-light text-truncate">
+                  ${element.description}
+                </p>
+                </a>
+              </div>
+              <div class="card-footer bg-transparent border-dark">
+                <div class="d-flex justify-content-between">
+                  <h5 class=>${date} </h5>
+                  <div class=>
+                      <a class="btn btn-success mx-1 px-2" href="">GOING</a>
+                      <a class="btn btn-danger mx-1 px-2" href="">SKIP</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

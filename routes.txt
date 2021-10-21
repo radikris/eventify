@@ -6,6 +6,8 @@ Pagek:
 -forget_password.html – elfelejtett jelszó form
 -dashboard.html – eventek listázása, és kereső oldal (favorit, going gomb használható, add event)
 -event_detail.html – egy bizonyos event detail page (going gomb használható)
+-event_edit.html – egy bizonyos event szerkesztése
+-event_create.html – egy új event detail hozzáadása
 -favorites.html – a kedvencek közé rakott eventek page (favorit, going gomb használható)
 -profile.html – a user saját oldala, saját eventei (favorit, going gomb használható, edit, delete)
 
@@ -26,7 +28,7 @@ Saját eventek listázása
 Favorit eventek listázása
 Profile name edit
 
-
+/********************************************************************************************/
 
 Routing
 
@@ -61,6 +63,8 @@ middleware/common/
 •	render (kirenderel egy html filet)
 
 
+/********************************************************************************************/
+
 GET, POST: /				index.html
 reverseAuthMW
 loginMW
@@ -91,16 +95,11 @@ getEventUserGoingMW
 getTodayEventsMW
 renderMW
 
-GET, POST: /events/add		dashboard.html
+GET, POST: /events/add		event_create.html
 authMW
-actionFavoriteEventMW
-actionGoingEventMW
-getEventsMW
-getEventUserFavoriteMW
-getEventUserGoingMW
-getTodayEventsMW
 createEventMW
 renderMW
+
 
 GET, POST: /events/:eventid		event_detail.html
 authMW
@@ -130,14 +129,12 @@ getUserEventsMW
 getEventUserGoingMW
 renderMW
 
-GET, POST: /profile/edit/:eventid	profile.html
+GET, POST: /profile/edit/:eventid	    event_edit.html
 authMW
-getUserMW
-getUserEventsMW
-getEventUserGoingMW
 getEventMW
 editEventMW
 renderMW
+
 
 GET: /profile/del/:eventid	profile.html
 authMW

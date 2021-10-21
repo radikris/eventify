@@ -58,100 +58,6 @@
     </div>
   </nav>
 
-  <div
-    class="modal fade"
-    id="exampleModalCenter"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-center" id="exampleModalLongTitle">
-            UPDATE YOUR EVENT
-          </h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="d-flex justify-content-center">
-            <img
-              class="card-img h-50 w-50"
-              src="./images/event_dummy.jpg"
-              style="max-width: 18rem bg-image"
-              alt="Card image"
-            />
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="exampleFormControlInput1">Event name</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="exampleFormControlInput1"
-                    placeholder="Event name"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">Description</label>
-                  <textarea
-                    class="form-control"
-                    id="exampleFormControlTextarea1"
-                    rows="3"
-                  ></textarea>
-                </div>
-              </div>
-
-              <div class="col-6">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    name="daterange"
-                    value="01/01/2021 - 12/31/2021"
-                    class="mt-4"
-                  />
-                  <script>
-                    $(function () {
-                      $('input[name="daterange"]').daterangepicker(
-                        {
-                          opens: "left",
-                        },
-                        function (start, end, label) {
-                          console.log(
-                            "A new date selection was made: " +
-                              start.format("YYYY-MM-DD") +
-                              " to " +
-                              end.format("YYYY-MM-DD")
-                          );
-                        }
-                      );
-                    });
-                  </script>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer d-flex justify-content-center">
-          <button type="button" class="btn btn-warning">DONE</button>
-          <button type="button" class="btn btn-light" data-dismiss="modal">
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div>
     <div class="container">
       <div class="row p-5 justify-content-center">
@@ -189,6 +95,47 @@
             <h2 class="text-dark">Events created by you</h2>
           </div>
           <div id="my_events" class="d-flex flex-wrap"></div>
+          <div class="card border-dark mb-3 mx-3 rounded-3 just" style="max-width: 18rem">
+            <div class="bg-image">
+              <img
+                class="card-img"
+                src="https://www.drandyfranklynmiller.com/wp-content/uploads/2015/08/placeholder-image.png",
+                style="max-width: 18rem bg-image"
+                alt="Card image"
+              />
+            </div>
+            <div class="card-img-overlay text-dark">
+              <div class="d-flex justify-content-between">
+                <h5 class="text-truncate" style="max-width: 200px;">
+                  Dummy event#3
+                </h5>
+                <div class="float-end">
+                  <a href="/event_edit.html">
+
+                    <i class="far fa-edit" id="eventFavorite"style="cursor: pointer; color:orange"></i>
+                  </a>  
+                  <a href="">
+
+                    <i class="fas fa-trash" id="eventFavorite"
+                    element.id
+                  }) style="cursor: pointer; color:red"></i>
+                </a>
+                </div>
+               </div>
+              <p class="card-text text-light text-truncate">
+                Event description#3
+              </p>
+            </div>
+            <div class="card-footer bg-transparent border-dark">
+              <div class="d-flex justify-content-between">
+                <h5 class=>2021.10.21</h5>
+                <div class=>
+                    <a class="btn btn-success mx-1 px-2" href="">GOING</a>
+                    <a class="btn btn-danger mx-1 px-2" href="">SKIP</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
