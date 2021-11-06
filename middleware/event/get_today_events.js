@@ -17,9 +17,7 @@ module.exports = function (objectrepository) {
   };
 
   return function (req, res, next) {
-
     res.locals.todays = res.locals.events.filter((a) => isToday(a.date));
-
     return next();
   };
 };

@@ -53,13 +53,13 @@ module.exports = function (objectrepository) {
       },
     ];
 
-    const selectedEvent = events.find((e) => (e._id = req.params.eventid));
+    const selectedEvent = events.find((e) => e._id === req.params.eventid);
+    console.log(selectedEvent);
 
     if (typeof selectedEvent === "undefined") {
       return next("Nothing");
     }
 
-    console.log("kriszi apad");
     res.locals.event = selectedEvent;
 
     return next();

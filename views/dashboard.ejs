@@ -1,4 +1,4 @@
-<%- include('header') -%> <%- include('navbar', {isAuthenticated: true}) %> <%-
+<%- include('header') -%> <%- include('navbar', {isAuthenticated: true}) %>
 <div>
   <div class="container">
     <div class="row p-5 justify-content-center">
@@ -28,20 +28,28 @@
           text-center
         "
       >
-        <div class="d-flex justify-content-lg-between mb-3 mt-1">
-          <input
-            class="w-50 float-start form-control mr-sm-2 border-warning"
+        <div class="d-flex mb-3 mt-1">
+          <form method="post" class="col-12 d-flex">
+            <input
+            class="float-start form-control mr-sm-1 border-warning"
             type="search"
+            name="event_search"
             placeholder="Search for events..."
             aria-label="Search"
-          />
-          <a type="button" class="btn btn-warning" href="/events/add">
-            + ADD EVENT
-          </a>
+            />
+            <button type="submit" class="mx-2 btn btn-light">SEARCH</button>
+            <div>
+              <a type="button" class="btn btn-warning float-end " href="/events/add">
+                ADD EVENT
+              </a>
+            </div>
+          </form>
+       
         </div>
+      
 
         <div id="all_events" class="d-flex flex-wrap">
-          <% events.forEach(function(item){ %>
+          <% filtered_events.forEach(function(item){ %>
     
             <%- include('common_event_card', {event: item, isToday: false}) %>
             <% }); %>

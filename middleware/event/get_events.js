@@ -8,7 +8,7 @@ const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
   return function (req, res, next) {
-    res.locals.events = [
+    let events = [
       {
         _id: "e1",
         title: "Dummy event#1",
@@ -53,6 +53,25 @@ module.exports = function (objectrepository) {
           "https://www.drandyfranklynmiller.com/wp-content/uploads/2015/08/placeholder-image.png",
       },
     ];
+
+    res.locals.events = events;
+
+    if (
+      typeof req.body.event_search !== "undefined" &&
+      req.body.event_search !== null &&
+      req.body.event_search.trim() !== ""
+    ) {
+      const searchphrase = req.body.event_search.toLowerCase();
+      const filteredEvents = events.filter(
+        (e) =>
+          e.description.toLowerCase().includes(searchphrase) ||
+          e.title.toLowerCase().includes(searchphrase)
+      );
+
+      events = typeof filteredEvents === "undefined" ? [] : filteredEvents;
+    }
+
+    res.locals.filtered_events = events;
 
     return next();
   };

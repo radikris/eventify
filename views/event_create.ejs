@@ -8,80 +8,62 @@
           CREATE NEW EVENT
         </h5>
       </div>
-      <div class="modal-body">
-        <div class="d-flex justify-content-center">
-          <img id="target" class="w-50 d-inline-flex" />
-        </div>
-        <input
-          type="file"
-          id="select_image"
-          name="image"
-          class="d-flex justify-content-center my-2 float-none"
-          onchange="putImage()"
-        />
-        <div class="container">
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label for="exampleFormControlInput1">Event name</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="exampleFormControlInput1"
-                  placeholder="Event name"
-                />
+      <form method="post">
+        <div class="modal-body">
+          <div class="d-flex justify-content-center">
+            <img id="target" class="w-50 d-inline-flex" />
+          </div>
+          <input
+            type="file"
+            id="select_image"
+            name="event_image"
+            class="d-flex justify-content-center my-2 float-none"
+            onchange="putImage()"
+          />
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Event name</label>
+                  <input
+                    type="text"
+                    name="event_name"
+                    class="form-control"
+                    id="exampleFormControlInput1"
+                    placeholder="Event name"
+                  />
+                </div>
               </div>
-              <div class="form-group">
+
+              <div class="col-6">
+                <div class="form-group">
+                  <input type="datetime-local" name="event_date" class="mt-4" />
+                </div>
+              </div>
+              <div class="form-group mt-4">
                 <label for="exampleFormControlTextarea1">Description</label>
                 <textarea
+                  name="event_description"
                   class="form-control"
                   id="exampleFormControlTextarea1"
                   rows="3"
                 ></textarea>
               </div>
             </div>
-
-            <div class="col-6">
-              <div class="form-group">
-                <input
-                  type="text"
-                  name="daterange"
-                  value="01/01/2021 - 12/31/2021"
-                  class="mt-4"
-                />
-                <script>
-                  $(function () {
-                    $('input[name="daterange"]').daterangepicker(
-                      {
-                        opens: "left",
-                      },
-                      function (start, end, label) {
-                        console.log(
-                          "A new date selection was made: " +
-                            start.format("YYYY-MM-DD") +
-                            " to " +
-                            end.format("YYYY-MM-DD")
-                        );
-                      }
-                    );
-                  });
-                </script>
-              </div>
-            </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button type="button" class="btn btn-warning">DONE</button>
-        <a
-          href="/events"
-          type="button"
-          class="btn btn-light"
-          data-dismiss="modal"
-        >
-          Close
-        </a>
-      </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="submit" class="btn btn-warning">DONE</button>
+          <a
+            href="/events"
+            type="button"
+            class="btn btn-light"
+            data-dismiss="modal"
+          >
+            Close
+          </a>
+        </div>
+      </form>
     </div>
   </div>
 </div>
