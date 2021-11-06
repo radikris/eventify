@@ -21,6 +21,9 @@ const getEventMW = require("../middleware/event/get_event");
 const getEventsMW = require("../middleware/event/get_events");
 const getTodayEventsMW = require("../middleware/event/get_today_events");
 
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+
 module.exports = function (app) {
   const objRepo = {};
 
@@ -43,6 +46,7 @@ module.exports = function (app) {
   app.use(
     "/events/add",
     authMW(objRepo),
+    upload.single("event_image"),
     createEventMW(objRepo), //create event on different page
     renderMW(objRepo, "event_create")
   );
