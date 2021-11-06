@@ -1,39 +1,37 @@
-<%- include('header') -%> <%- include('navbar', {isAuthenticated: true}) %>
-
+<%- include('header') -%> <%- include('navbar', {isAuthenticated: true}) %> <%
+console.log(JSON.stringify(going)) %>
 <div class="container">
   <div class="row border border-1 border-dark justify-content-center mt-5">
     <div class="col-3 justify-content-start">
       <h5 class="text-success">GOING</h5>
       <div class="d-inline-flex flex-wrap">
-        <p>Nev1,</p>
-        <p>Nev2,</p>
-        <p>Nev333333333,</p>
-        <p>Nev4</p>
+        <% going.forEach(function(name) { %>
+        <p><%- name %>,</p>
+
+        <% }); %>
       </div>
 
       <h5 class="text-danger">SKIP</h5>
       <div class="d-inline-flex">
-        <p>Nev5,</p>
-        <p>Nev6</p>
+        <% skip.forEach(name => { %>
+        <p><%- name %>,</p>
+
+        <% }); %>
       </div>
     </div>
 
     <div class="col-6 d-flex flex-column">
       <div class="d-flex justify-content-center">
         <img
-          src="./images/event_dummy.jpg"
+          src="<%- event.image %> "
           class="rounded d-block h-75 w-75"
           alt="logo"
         />
       </div>
+      <h5 class="text-center"><%- event.date.toLocaleString()%></h5>
       <div class="d-flex flex-column">
-        <h1 class="text-center">EVENT TITLE</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis saepe
-          ea laudantium soluta accusantium nisi enim natus hic laborum omnis
-          consequatur corrupti corporis unde, necessitatibus at animi voluptatem
-          rerum ratione!
-        </p>
+        <h1 class="text-center"><%- event.title %></h1>
+        <p><%- event.description %></p>
       </div>
     </div>
 

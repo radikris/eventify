@@ -11,7 +11,6 @@ module.exports = function (objectrepository) {
     // ) {
     //   return res.redirect("/");
     // }
-    console.log("authMW");
 
     return next();
   };

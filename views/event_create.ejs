@@ -1,6 +1,4 @@
-<%- include('header') -%>
-<%- include('navbar', {isAuthenticated: true}) %> 
-
+<%- include('header') -%> <%- include('navbar', {isAuthenticated: true}) %>
 
 <div class="container">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -9,14 +7,6 @@
         <h5 class="modal-title text-center" id="exampleModalLongTitle">
           CREATE NEW EVENT
         </h5>
-        <button
-          type="button"
-          class="close btn-outline-warning"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <div class="modal-body">
         <div class="d-flex justify-content-center">
@@ -83,9 +73,14 @@
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button type="button" class="btn btn-warning">DONE</button>
-        <button type="button" class="btn btn-light" data-dismiss="modal">
+        <a
+          href="/events"
+          type="button"
+          class="btn btn-light"
+          data-dismiss="modal"
+        >
           Close
-        </button>
+        </a>
       </div>
     </div>
   </div>
