@@ -1,7 +1,6 @@
 <%- include('header') -%>
 
 <%- include('navbar', {isAuthenticated: false}) %> 
-
   <div class="container justify-content-center">
     <img
       src="./images/eventify.png"
@@ -12,11 +11,17 @@
 
   <div class="d-flex justify-content-center">
     <div class="col-4 border-1 rounded-2 border border-warning p-3">
-      <form>
+      <% if(typeof error !== "undefined"){ %>
+        <div class="alert alert-danger" role="alert">
+          <%-error%>
+        </div>
+      <% } %>  
+      <form method="post">
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
           <input
             type="email"
+            name="email"
             class="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
@@ -27,6 +32,7 @@
           <label for="exampleInputPassword1">Password</label>
           <input
             type="password"
+            name="password"
             class="form-control"
             id="exampleInputPassword1"
             placeholder="Password"
@@ -42,11 +48,10 @@
           class="d-flex justify-content-center text-warning my-2"
           >Forgot your password?</small
         >
-        <a
-          class="btn btn-warning d-flex justify-content-center mt-4"
-          href="/events"
-          >SIGN IN</a
-        >
+        <button
+        type="submit"
+        class="btn btn-warning d-flex justify-content-center mt-4"
+        >SIGN IN</button>
       </form>
     </div>
   </div>

@@ -8,17 +8,22 @@ const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
   return function (req, res, next) {
-    // if (
-    //   typeof req.body.password === "undefined" ||
-    //   typeof req.body.email === "undefined" ||
-    //   typeof req.body.username === "undefined"
-    // ) {
-    //   res.locals.error = "Hibás adatok!";
-    //   return next();
-    // } else {
-    //   req.session.userid = "userid";
-    //   return req.session.save((err) => res.redirect("/events"));
-    // }
-    return next();
+    console.log(req.body.password);
+    console.log(req.body.email);
+    console.log(req.body.password_confirm);
+
+    if (
+      typeof req.body.password === "undefined" ||
+      req.body.password === "" ||
+      typeof req.body.email === "undefined" ||
+      req.body.email === "" ||
+      typeof req.body.password_confirm === "undefined" ||
+      req.body.password_confirm === ""
+    ) {
+      return next();
+    } else {
+      req.session.userid = "userid";
+      return req.session.save((err) => res.redirect("/events"));
+    }
   };
 };

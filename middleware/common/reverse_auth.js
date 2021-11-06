@@ -6,10 +6,10 @@ const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository, viewName) {
   return function (req, res, next) {
-    return next();
     // if (typeof req.session.userid !== "undefined") {
     //   return next();
     // }
-    // return res.redirect("/");
+    // return res.redirect("/");  //what to do not redirect loop
+    return next();
   };
 };
