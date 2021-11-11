@@ -10,6 +10,7 @@ module.exports = function (objectrepository, viewName) {
     //   return next();
     // }
     // return res.redirect("/");  //what to do not redirect loop
+    //TODO redirect loop
     return next();
   };
 };
