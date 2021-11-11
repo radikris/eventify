@@ -7,7 +7,8 @@ const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
   return function (req, res, next) {
-    //TODO
+    //TODO DELETE BEVCAUSE EVENTS ALREADY INCLUDE THIS
+
     res.locals.going = ["Kris", "Kristof", "krisz", "Chris"];
     res.locals.skip = ["Kris1", "chri$2"];
 

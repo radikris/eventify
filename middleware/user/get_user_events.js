@@ -7,26 +7,31 @@ const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
   return function (req, res, next) {
-    res.locals.user_events = [
-      {
-        _id: "e1",
-        title: "Dummy event#1",
-        description: "Event description#1",
-        date: new Date(),
-        image:
-          "https://www.drandyfranklynmiller.com/wp-content/uploads/2015/08/placeholder-image.png",
-      },
-      {
-        _id: "e5",
-        title: "Dummy event#5 dummy placeholder text",
-        description:
-          "Event description#5  replay Long Event replay Long Event replay Long Event",
-        date: new Date(2021, 09, 30, 22, 22),
-        image:
-          "https://www.drandyfranklynmiller.com/wp-content/uploads/2015/08/placeholder-image.png",
-      },
-    ];
+    const EventModel = requireOption(objectrepository, "EventModel");
+    const UserModel = requireOption(objectrepository, "UserModel");
 
-    next();
+    EventModel.find(
+      { user_id: req.session.userid },
+      function (err, userevents) {
+        if (err) {
+          return next(err);
+        }
+
+        UserModel.findOne(
+          { _id: req.session.userid },
+          function (err, currentuser) {
+            if (err) {
+              return next(err);
+            }
+
+            if (typeof user !== null) {
+              res.locals.user_events = userevents;
+              res.locals.user = currentuser;
+              return next();
+            }
+          }
+        );
+      }
+    );
   };
 };

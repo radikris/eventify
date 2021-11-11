@@ -24,6 +24,7 @@
             type="text"
             class="form-control mt-5"
             id="userNameInput"
+            value="<%- user.username %> ",
             placeholder="Username"
           />
           <a class="btn btn-warning mt-3">DONE</a>
@@ -59,7 +60,7 @@
     
                         <i class="far fa-edit" id="eventFavorite"style="cursor: pointer; color:orange"></i>
                       </a>  
-                      <a href="">
+                      <a href="/profile/del/<%- event._id %>">
     
                         <i class="fas fa-trash" id="eventFavorite"
                         element.id

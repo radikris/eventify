@@ -35,7 +35,13 @@
 
               <div class="col-6">
                 <div class="form-group">
-                  <input type="datetime-local" name="event_date" class="mt-4" />
+                  <!--TODO value should be: YYYY-MM-DDThh:mm-->
+                  <input
+                    type="datetime-local"
+                    value="<%-  event.date.toISOString() %>"
+                    name="event_date"
+                    class="mt-4"
+                  />
                 </div>
               </div>
               <div class="form-group mt-4">

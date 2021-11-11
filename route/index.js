@@ -102,7 +102,7 @@ module.exports = function (app) {
     renderMW(objRepo, "event_edit")
   );
 
-  app.post(
+  app.use(
     "/profile/del/:eventid",
     authMW(objRepo),
     getEventMW(objRepo),

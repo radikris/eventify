@@ -22,7 +22,7 @@ module.exports = function (objectrepository) {
         req.body.event_search.trim() !== ""
       ) {
         const searchphrase = req.body.event_search;
-        const filteredEvents = EventModel.find(
+        EventModel.find(
           {
             $or: [
               { description: { $regex: searchphrase, $options: "i" } },
