@@ -24,8 +24,16 @@ const getTodayEventsMW = require("../middleware/event/get_today_events");
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 
+const UserModel = require("../models/user");
+const EventModel = require("../models/event");
+const FavoriteModel = require("../models/favorite");
+
 module.exports = function (app) {
-  const objRepo = {};
+  const objRepo = {
+    UserModel: UserModel,
+    EventModel: EventModel,
+    FavoriteModel: FavoriteModel,
+  };
 
   app.use(
     "/register",
