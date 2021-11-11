@@ -6,7 +6,7 @@ const Event = db.model("Event", {
   description: String,
   date: Date,
   image: String,
-  _user_id: {
+  user_id: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
