@@ -7,6 +7,8 @@
 const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
+  var UserModel = requireOption(objectrepository, "UserModel");
+
   return function (req, res, next) {
     console.log(req.body.password);
     console.log(req.body.email);
@@ -22,8 +24,26 @@ module.exports = function (objectrepository) {
     ) {
       return next();
     } else {
-      req.session.userid = "userid";
-      return req.session.save((err) => res.redirect("/events"));
+      UserModel.findOne(
+        {
+          email: req.body.email,
+        },
+        function (err, result) {
+          if (err || result !== null) {
+            res.locals.error = "Your email address is already registered!";
+            return next();
+          }
+          //create user
+          var newUser = new UserModel();
+          newUser.email = req.body.email;
+          newUser.password = req.body.password;
+          newUser.save(function (err, user) {
+            //redirect to /events
+            req.session.userid = user._id;
+            return req.session.save((err) => res.redirect("/events"));
+          });
+        }
+      );
     }
   };
 };

@@ -7,6 +7,16 @@ const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
   return function (req, res, next) {
+    var EventModel = requireOption(objectrepository, "EventModel");
+
+    if (
+      typeof req.body.password === "undefined" ||
+      typeof req.body.email === "undefined"
+    ) {
+      return next();
+    }
+
+
     console.log(req.file); //TODO SAVE req.file.filename
     next();
   };
