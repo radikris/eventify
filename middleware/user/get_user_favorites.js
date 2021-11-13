@@ -16,8 +16,12 @@ module.exports = function (objectrepository) {
           return next(err);
         }
 
-        if (favorites.events) {
-          res.locals.favorites = favorites.events;
+        if (favorites) {
+          if (favorites.events) {
+            res.locals.favorites = favorites.events;
+          } else {
+            res.locals.favorites = [];
+          }
         } else {
           res.locals.favorites = [];
         }

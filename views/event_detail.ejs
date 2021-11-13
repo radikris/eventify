@@ -4,16 +4,16 @@
     <div class="col-3 justify-content-start">
       <h5 class="text-success">GOING</h5>
       <div class="d-inline-flex flex-wrap">
-        <% event.going.forEach(function(name) { %>
-        <p><%- name %>,</p>
+        <% event.going.forEach(function(user) { %>
+        <p><%- user.username %>,</p>
 
         <% }); %>
       </div>
 
       <h5 class="text-danger">SKIP</h5>
       <div class="d-inline-flex">
-        <% event.skip.forEach(name => { %>
-        <p><%- name %>,</p>
+        <% event.skip.forEach(user => { %>
+        <p><%- user.username %>,</p>
 
         <% }); %>
       </div>
