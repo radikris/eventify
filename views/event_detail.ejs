@@ -37,8 +37,16 @@
     <div class="col-3">
       <h4 class="text-center">Let others know your choice</h4>
       <div class="d-flex justify-content-center">
-        <a class="btn btn-success mx-1 px-2" href="">GOING</a>
-        <a class="btn btn-danger mx-1 px-2" href="">SKIP</a>
+        <a
+          class="btn btn-success mx-1 px-2"
+          href="/action/going/<%- event._id %>/true"
+          >GOING</a
+        >
+        <a
+          class="btn btn-danger mx-1 px-2"
+          href="/action/going/<%- event._id %>/false"
+          >SKIP</a
+        >
       </div>
     </div>
     >

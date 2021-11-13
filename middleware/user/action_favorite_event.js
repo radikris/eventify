@@ -7,9 +7,47 @@ const requireOption = require("../requireOption");
 
 module.exports = function (objectrepository) {
   return function (req, res, next) {
-    console.log("actionfav");
-    //TODO
+    const FavoriteModel = requireOption(objectrepository, "FavoriteModel");
 
-    return next();
+    FavoriteModel.findOne(
+      { user_id: req.session.userid },
+      function (error, user) {
+        if (error) {
+          return next(error);
+        }
+
+        if (!user) {
+          var newFavorite = new FavoriteModel();
+          newFavorite.user_id = req.session.userid;
+          newFavorite.events = [];
+          newFavorite.events.push(req.params.eventid);
+          newFavorite.save(function (err, user) {
+            if (err) {
+              return next(err);
+            }
+
+            return res.redirect("back");
+          });
+        } else {
+          var alreadyFavorite = user.events.some(function (event) {
+            return event.equals(req.params.eventid);
+          });
+          if (alreadyFavorite) {
+            user.events.pull(req.params.eventid);
+          } else {
+            user.events.push(req.params.eventid);
+          }
+
+          user.save(function (err, result) {
+            if (err) {
+              return next(err);
+            }
+            return res.redirect("back");
+          });
+
+          //DEADCODE
+        }
+      }
+    );
   };
 };

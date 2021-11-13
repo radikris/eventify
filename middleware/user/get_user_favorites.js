@@ -9,15 +9,23 @@ module.exports = function (objectrepository) {
   return function (req, res, next) {
     const FavoriteModel = requireOption(objectrepository, "FavoriteModel");
 
-    FavoriteModel.find(
-      { user_id: req.session.userid },
-      function (err, favorites) {
+    FavoriteModel.findOne({ user_id: req.session.userid })
+      .populate("events")
+      .exec(function (err, favorites) {
         if (err) {
           return next(err);
         }
-        res.locals.favorites = favorites;
+
+        console.log(favorites);
+
+        if (favorites.events) {
+          res.locals.favorites = favorites.events;
+        } else {
+          res.locals.favorites = [];
+        }
+
+        console.log(res.locals.favorites);
         return next();
-      }
-    );
+      });
   };
 };
