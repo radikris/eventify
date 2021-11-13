@@ -62,10 +62,7 @@ module.exports = function (app) {
   app.use(
     "/events/:eventid",
     authMW(objRepo),
-    //actionFavoriteEventMW(objRepo),
-    //actionGoingEventMW(objRepo),
     getEventMW(objRepo),
-    getEventMembersMW(objRepo), //get all users to eventid if going/skip
     getEventUserFavoriteMW(objRepo),
     getEventUserGoingMW(objRepo),
     renderMW(objRepo, "event_detail")
@@ -74,8 +71,6 @@ module.exports = function (app) {
   app.use(
     "/events",
     authMW(objRepo), //if not login, redirect to
-    //actionFavoriteEventMW(objRepo), //toggle favorite eventid in db
-    //actionGoingEventMW(objRepo), //going/skip eventid in db
     getEventsMW(objRepo), //get all events from db
     getEventUserFavoriteMW(objRepo), //check all events if user favorited them
     getEventUserGoingMW(objRepo), //check all events if user going them
@@ -86,10 +81,7 @@ module.exports = function (app) {
   app.use(
     "/favorites",
     authMW(objRepo),
-    //actionFavoriteEventMW(objRepo),
-    //actionGoingEventMW(objRepo),
     getUserFavoritesMW(objRepo),
-    getEventUserFavoriteMW(objRepo), //get all events which are favorited by the user
     getEventUserGoingMW(objRepo),
     renderMW(objRepo, "favorites")
   );
@@ -126,7 +118,6 @@ module.exports = function (app) {
     authMW(objRepo),
     editUserNameMW(objRepo), //edit userid with new username
     getUserMW(objRepo), //get userid all data
-    //actionGoingEventMW(objRepo),
     getUserEventsMW(objRepo), //get all events created by the user
     getEventUserGoingMW(objRepo),
     renderMW(objRepo, "profile")

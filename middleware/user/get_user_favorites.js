@@ -16,15 +16,12 @@ module.exports = function (objectrepository) {
           return next(err);
         }
 
-        console.log(favorites);
-
         if (favorites.events) {
           res.locals.favorites = favorites.events;
         } else {
           res.locals.favorites = [];
         }
 
-        console.log(res.locals.favorites);
         return next();
       });
   };

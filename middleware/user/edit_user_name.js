@@ -9,6 +9,30 @@ const requireOption = require("../requireOption");
 module.exports = function (objectrepository) {
   return function (req, res, next) {
     //TODO
-    next();
+    const UserModel = requireOption(objectrepository, "UserModel");
+
+    if (typeof req.body.username !== "undefined" && req.body.username !== "") {
+      UserModel.findOne({ _id: req.session.userid }, function (error, user) {
+        if (error) {
+          return next(error);
+        }
+
+        if (user.username !== "req.body.username") {
+          user.username = req.body.username;
+          user.save(function (error, result) {
+            if (error) {
+              return next(error);
+            }
+            console.log("saveusername");
+            console.log(req.body.username);
+            return next();
+          });
+        } else {
+          return next();
+        }
+      });
+    } else {
+      return next();
+    }
   };
 };

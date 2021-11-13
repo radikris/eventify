@@ -20,15 +20,18 @@
             src=""
             class="rounded-circle border border-1 h-50 w-50"
           />
-          <input
+          <form method="post">
+            <input
             type="text"
+            name="username"
             class="form-control mt-5"
             id="userNameInput"
             value="<%- user.username %> ",
             placeholder="Username"
-          />
-          <a class="btn btn-warning mt-3">DONE</a>
-        </div>
+            />
+            <button type="submit" class="btn btn-warning mt-3">DONE</button>
+          </form>
+          </div>
         <div
           class="
             col-8
