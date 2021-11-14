@@ -22,6 +22,7 @@ const Event = db.model("Event", {
       ref: "User",
     },
   ],
+  isFavorite: Boolean,
 });
 
 module.exports = Event;

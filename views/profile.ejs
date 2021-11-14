@@ -17,7 +17,7 @@
           <h2 class="text-dark">Your profile</h2>
           <img
             id="userAvatar"
-            src=""
+            src="https://robohash.org/<%- user.username %>"
             class="rounded-circle border border-1 h-50 w-50"
           />
           <form method="post">
@@ -26,7 +26,7 @@
             name="username"
             class="form-control mt-5"
             id="userNameInput"
-            value="<%- user.username %> ",
+            value="<%- user.username %>",
             placeholder="Username"
             />
             <button type="submit" class="btn btn-warning mt-3">DONE</button>
@@ -46,40 +46,42 @@
           <div id="my_events" class="d-flex flex-wrap">
             <% user_events.forEach(event=>{%> 
               <div class="card border-dark mb-3 mx-3 rounded-3 just" style="max-width: 18rem">
-                <div class="bg-image">
+                <div class="position-relative">
                   <img
-                    class="card-img"
-                    src="<%- event.image %> ",
+                    class="card-img rounded"
+                    src="/imagestore/<%- event.image %> ",
                     style="max-width: 18rem bg-image"
                     alt="Card image"
+                    height="150"
                   />
-                </div>
-                <div class="card-img-overlay text-dark">
-                  <div class="d-flex justify-content-between">
-                    <h5 class="text-truncate" style="max-width: 200px;">
-                      <%- event.title %>                    </h5>
-                    <div class="float-end">
-                      <a href="/profile/edit/<%- event._id %>">
-    
-                        <i class="far fa-edit" id="eventFavorite"style="cursor: pointer; color:orange"></i>
-                      </a>  
-                      <a href="/profile/del/<%- event._id %>">
-    
-                        <i class="fas fa-trash" id="eventFavorite"
-                        element.id
-                      }) style="cursor: pointer; color:red"></i>
-                    </a>
+            
+                  <div class="card-img-overlay text-dark">
+                    <div class="d-flex justify-content-between">
+                      <h5 class="text-truncate" style="max-width: 200px;">
+                        <%- event.title %>                    </h5>
+                      <div class="float-end">
+                        <a href="/profile/edit/<%- event._id %>">
+      
+                          <i class="far fa-edit" id="eventFavorite"style="cursor: pointer; color:orange"></i>
+                        </a>  
+                        <a href="/profile/del/<%- event._id %>">
+      
+                          <i class="fas fa-trash" id="eventFavorite"
+                          element.id
+                        }) style="cursor: pointer; color:red"></i>
+                      </a>
+                      </div>
                     </div>
-                   </div>
-                  <p class="card-text text-light text-truncate">
-                    <%- event.description %>                  </p>
-                </div>
+                    <p class="card-text text-light text-truncate">
+                      <%- event.description %>                  </p>
+                  </div>
+               </div>
                 <div class="card-footer bg-transparent border-dark">
                   <div class="d-flex justify-content-between">
                     <h5 class=><%- event.date.toLocaleDateString() %> </h5>
                     <div class=>
-                        <a class="btn btn-success mx-1 px-2" href="">GOING</a>
-                        <a class="btn btn-danger mx-1 px-2" href="">SKIP</a>
+                        <a class="btn btn-success mx-1 px-2" href="/action/going/<%- event._id %>/true">GOING</a>
+                        <a class="btn btn-danger mx-1 px-2" href="/action/going/<%- event._id %>/false">SKIP</a>
                     </div>
                   </div>
                 </div>

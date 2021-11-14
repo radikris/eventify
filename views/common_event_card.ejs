@@ -1,26 +1,28 @@
 <% include('helpers')%> 
 <div class="card border-dark mb-3 mx-3 rounded-3" style="max-width: 18rem">
-    <div class="bg-image">
+    <div class="position-relative">
       <img
+        src="/imagestore/<%- event.image %>"
         class="card-img"
-        src="<%- event.image %>"
         style="max-width: 18rem bg-image"
         alt="Card image"
+        height="150"
       />
-    </div>
-    <div class="card-img-overlay text-dark">
-      <div class="d-flex justify-content-between">
-        <h5 class=><%- event.title %></h5>
-        <a href="/action/favorite/<%- event._id %>">
 
-          <i class="float-end far fa-heart" id="eventFavorite" style="cursor: pointer;"></i>
+      <div class="card-img-overlay text-dark">
+        <div class="d-flex justify-content-between">
+          <h5 class=><%- event.title %></h5>
+        <a href="/action/favorite/<%- event._id %>">
+          <%- include('favorite_toggle', {isFavorite: isFavorite}) %>
         </a>
-       </div>
-       <a href="/events/<%- event._id %> ">
-        <p class="card-text text-light text-truncate">
-          <%- event.description %>
+      </div>
+  
+       <a href="/events/<%- event._id %>">
+          <p class="card-text text-light text-truncate">
+            <%- event.description %>
           </p>
-          </a>
+        </a>
+      </div>
     </div>
     <div class="card-footer bg-transparent border-dark">
       <div class="d-flex justify-content-between">
@@ -33,8 +35,16 @@
 
           <% } %>   
         <div class=>
-            <a class="btn btn-success mx-1 px-2" href="/action/going/<%- event._id %>/true">GOING</a>
-            <a class="btn btn-danger mx-1 px-2" href="/action/going/<%- event._id %>/false">SKIP</a>
+            <a
+          class="btn btn-success mx-1 px-2"
+          href="/action/going/<%- event._id %>/true"
+          >GOING</a
+        >
+        <a
+          class="btn btn-danger mx-1 px-2"
+          href="/action/going/<%- event._id %>/false"
+          >SKIP</a
+        >
         </div>
       </div>
     </div>

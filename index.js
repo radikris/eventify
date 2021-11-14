@@ -9,6 +9,8 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use(express.static("static"));
 
+app.use("/imagestore/", express.static("uploads"));
+
 app.use(
   session({
     secret: "secret",

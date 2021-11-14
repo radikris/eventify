@@ -15,8 +15,9 @@
         </h2>
 
         <div id="todays_events">
-          <% todays.forEach(element => { %> <%- include('common_event_card',
-          {event: element, isToday: true}) %> <% }); %>
+          <% todays.forEach(element => { %> 
+            <%- include('common_event_card',{event: element, isToday: true, isFavorite: element.isFavorite}) %> 
+          <% }); %>
         </div>
       </div>
       <!-- THIS IS THE END OF ONE EVENT CARD -->
@@ -50,8 +51,7 @@
 
         <div id="all_events" class="d-flex flex-wrap">
           <% filtered_events.forEach(function(item){ %>
-    
-            <%- include('common_event_card', {event: item, isToday: false}) %>
+            <%- include('common_event_card', {event: item, isToday: false, isFavorite:item.isFavorite}) %>
             <% }); %>
           </div>
         </div>

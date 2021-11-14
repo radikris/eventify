@@ -17,8 +17,8 @@
     </h2>
     <div id="favorites_events" class="d-flex flex-wrap">
       <% favorites.forEach(favoriteEvent => { %> <%-
-      include('common_event_card', {event: favoriteEvent, isToday: false}) %>
-      <%}); %>
+      include('common_event_card', {event: favoriteEvent, isToday: false,
+      isFavorite: true}) %> <%}); %>
     </div>
   </div>
 </div>
