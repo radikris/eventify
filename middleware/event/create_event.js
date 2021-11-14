@@ -24,6 +24,7 @@ module.exports = function (objectrepository) {
       newEvent.image = req.file.filename;
       newEvent.going = [];
       newEvent.skip = [];
+      newEvent.isFavorite = false;
       newEvent.user_id = req.session.userid;
       newEvent.save(function (err, event) {
         //redirect to /events
