@@ -13,10 +13,13 @@ module.exports = function (objectrepository) {
     if (
       typeof req.body.event_name === "undefined" ||
       typeof req.body.event_description === "undefined" ||
-      typeof req.body.event_date === "undefined"
+      typeof req.body.event_date === "undefined" ||
+      typeof req.body.event_date == null
     ) {
+      console.log("valmai nem oke");
       return next();
     } else {
+      console.log("Minden kitoltve");
       EventModel.findOne({ _id: req.params.eventid }, function (error, event) {
         event.title = req.body.event_name;
         event.description = req.body.event_description;
