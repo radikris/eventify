@@ -14,7 +14,6 @@ const getUserMW = require("../middleware/user/get_user");
 const createEventMW = require("../middleware/event/create_event");
 const deleteEventMW = require("../middleware/event/delete_event");
 const editEventMW = require("../middleware/event/edit_event");
-const getEventMembersMW = require("../middleware/event/get_event_members");
 const getEventUserFavoriteMW = require("../middleware/event/get_event_user_favorite");
 const getEventUserGoingMW = require("../middleware/event/get_event_user_going");
 const getEventMW = require("../middleware/event/get_event");
