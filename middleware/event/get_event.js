@@ -13,8 +13,11 @@ module.exports = function (objectrepository) {
       .populate("going")
       .populate("skip")
       .exec(function (err, event) {
-        console.log(event);
-        if (typeof event !== null) {
+        if (typeof event !== "undefined") {
+          if (err) {
+            return next(err);
+          }
+
           res.locals.event = event;
           return next();
         } else {
